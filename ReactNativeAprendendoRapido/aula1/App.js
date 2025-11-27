@@ -1,10 +1,19 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import Button from './src/components/Button';
 
-export default function App() {
+// npx react-native start
+// npx react-native run-android
+
+const App = () => {
   return (
-    <View style={{ flex: 1, backgroundColor: 'blue', justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 30, color: 'white' }}>TESTE</Text>
+    <View>
+      <Button alerta="Apertou">
+        <Text>Clicar</Text>
+      </Button>
     </View>
   );
 }
+
+
+export default App;

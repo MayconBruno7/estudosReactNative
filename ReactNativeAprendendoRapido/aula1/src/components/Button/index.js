@@ -1,12 +1,19 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, {Component} from 'react';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 
-const Button = () => {
-    return (
-        <View>
-            <Text>Botão</Text>
-        </View>
-    );
+export default class Button extends Component {
+    render () {
+        return  (
+            <TouchableOpacity onPress={() => {
+                Alert.alert(this.props.alerta);
+            }}>
+            <View> 
+                <Text>{this.props.title}</Text>
+                {this.props.children}
+            </View>
+            </TouchableOpacity>
+        );
+    }
 };
 
-export default Button;
+// export default Button;
