@@ -8,6 +8,7 @@ export default class App extends Component {
   state = {
     contador: 0,
     name: 'Maycon',
+    personagens: []
   };
 
   incrementar = () => {
@@ -21,6 +22,23 @@ export default class App extends Component {
       name: nome,
     });
   }
+
+  async componentWillMount(){
+    try {
+      const response = await fetch("https://swapi.dev/api/people/?format=json");
+      const dataJson = await response.json();
+
+      console.log(dataJson.results);
+      this.setState({personagens: dataJson.results});
+    } catch(error) {
+      console.log(error)
+    }
+  }
+
+  // componentDidMount() {
+  //   console.log('componentDidMount')
+  // }
+  
   render() {
     return (
       <View>
@@ -36,10 +54,17 @@ export default class App extends Component {
         </Button>
 
         <Text>Olá {this.state.name}</Text> 
-         <TextInput 
-            value={this.state.name} 
-            onChangeText={nome => this.alteraNome(nome)}
-          />
+        <TextInput 
+          value={this.state.name} 
+          onChangeText={nome => this.alteraNome(nome)}
+        />
+
+        {this.state.personagens.map(personagem => {
+          console.log(personagem)
+          return <Text key={personagem.name}>{personagem.name}</Text>
+        })}
+
+
       </View>
     );
   }
